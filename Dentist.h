@@ -3,27 +3,28 @@
 
 #include <iostream>
 #include "Doctor.h"
+#include "Patient.h"
 using namespace std;
 
+class Patient;
 
 class Dentist : public Doctor
 {
-    public:
     const int examt=2; //czas pojedynczych badan
     const int breakt=3; //co ile lekarz jest dostepny
     const int avat=5; //czas na jaki lekarz jest dostepny
     bool is_available; //czy dostepny
     int freetime; //zmienna deklarujaca ile jeszcze jednostek czasu lekarz bedzie zajety lub wolny
     int examcon; //zmienna deklarujaca ile jeszcze czasu beda wykonywane badania
+    Patient *pat; //aktualnie badany pacjent
 
-
-    bool is_ava(); //Czy lekarz dostepny
-    void iter(); //funkcja wykonujaca sie po kazdej iteracji
-    void patcame(); //funkcja wykonujaca sie gdy przyjdzie pacjent
+    public:
+    virtual bool is_ava(); //Czy lekarz dostepny
+    virtual void iter(); //funkcja wykonujaca sie po kazdej iteracji
+    virtual void patcame(); //funkcja wykonujaca sie gdy przyjdzie pacjent
     Dentist(); //konstruktor klasy
     ~Dentist(){}; //destruktor klasy
 
 };
-
 
 #endif //Dentist_definition

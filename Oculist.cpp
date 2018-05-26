@@ -17,16 +17,17 @@ bool Oculist::is_ava()
 
 void Oculist::patcame()
 {
-    if(freetime>=examt)
+    if(freetime>=examt && is_available==true)
     {
     is_available=false;
     examcon=examt;
     }
-    /*
+    //Jesli lekarz nie moze przyjac rzuca wyjatek
     else
     {
-
-    }*/
+        int oculistbusy;
+        throw(oculistbusy);
+    }
 }
 
 void Oculist::iter()

@@ -1,46 +1,43 @@
 #include <iostream>
-#include "Dentist.h"
-#include "Doctor.h"
+#include "Pedia.h"
 using namespace std;
 
-bool Dentist::is_ava()
+bool Pedia::is_ava()
 {
     if(is_available) return true;
     else return false;
 }
 
 
-Dentist::Dentist()
+Pedia::Pedia()
 {
     is_available=true;
     freetime=avat;
     examcon=0;
 }
 
-void Dentist::patcame()
+void Pedia::patcame()
 {
     if(freetime>=examt && is_available==true)
     {
     is_available=false;
     examcon=examt;
-//    pat=patient;
     }
     //Jesli lekarz nie moze przyjac rzuca wyjatek
     else
     {
-        int dentistbusy=2;
-        throw(dentistbusy);
+        int pediabusy;
+        throw(pediabusy);
     }
 }
 
-void Dentist::iter()
+void Pedia::iter()
 {
     //Jesli examcon =1 to w danej iteracji badanie juz sie skonczylo
     if(examcon==1)
     {
         examcon=0;
         is_available=true;
-        pat->notbusy();
     }
 
     if(examcon>1)
