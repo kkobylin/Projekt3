@@ -18,8 +18,7 @@ void Simulation(string file_name)
     write.open("results.txt");
     ifstream read(file_name);
 
-    int loops;
-    int patients; //liczba iteracji oraz liczba pacjentow
+    int loops,patients; //liczba iteracji oraz liczba pacjentow
     try
     {
         read>>loops>>patients;
@@ -31,6 +30,7 @@ void Simulation(string file_name)
     }
 
     //vector <Patient> patvec{patients, Patient()};
+    //wektor pacjentow
     vector <Patient> patvec;
     for(int i=0;i<patients;i++)
         patvec.push_back(Patient(i));
@@ -40,75 +40,88 @@ void Simulation(string file_name)
     Oculist ocu1;
     Pedia ped1;
     queue <Patient> qued; //kolejka oczekujacych pacjentow do dentysty
-
-    int choice;
+    queue <Patient> queo; //kolejka oczekujacych pacjentow do okulisty
+    queue <Patient> quep; //kolejka oczekujacych pacjentow do pediatry
     Doctor *wsk;
-    choice=random(1,3);
-    //Na ktorego lekarza wskazuje wskaznik;
-    switch(choice)
-    {
-    case 1:
-        wsk=&den1;
-        break;
 
-    case 2:
-        wsk=&ocu1;
-        break;
+    int choice,number;
 
-    case 3:
-        wsk=&ped1;
-        break;
-    }
-
-    wsk=&den1;
-    try
-    {
-        patvec[0].visitdoc(wsk);
-    }
-    catch(int a)
-    {
-
-        qued.push(patvec[0]);
-    }
-    cout<<qued.empty();
-    try
-    {
-        patvec[0].visitdoc(wsk);
-    }
-    catch(int a)
-    {
-
-        qued.push(patvec[0]);
-    }
-
-    cout<<qued.empty();
-/*
     for(int i=0;i<loops;i++)
     {
 
         cout<<"Iteracja: "<<i<<endl;
-        if(i==2 || i==9 || i==10 || i==12)
+
+        //akcja 1
+        do
         {
-            den1.patcame();
-           // ocu1.patcame();
+            number=random(0,patients-1);
+        }while(patvec[number].ifbusy());
+        choice=random(1,4);
+        switch(choice)
+        {
+        case 1:
+            //Pacjent idzie do specjalisty
+            int doc;
+            doc=random(1,3);
+            switch(doc)
+            {
+            case 1:
+                wsk=&den1;
+                cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty"<<endl;
+                write<<"Pacjent nr "<<number<<" kieruje sie do dentysty"<<endl;
+                break;
+            case 2:
+                wsk=&ocu1;
+                cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty"<<endl;
+                write<<"Pacjent nr "<<number<<" kieruje sie do okulisty"<<endl;
+                break;
+            case 3:
+                wsk=&ped1;
+                cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry"<<endl;
+                write<<"Pacjent nr "<<number<<" kieruje sie do pediatry"<<endl;
+                break;
+            }
+            try
+            {
+                patvec[number].visitdoc(wsk);
+            }
+            catch(int)
+            {
+                cout<<"Specjalista aktualnie zajety wiec pacjent kieruje sie do kolejki"<<endl;
+                write<<"Specjalista aktualnie zajety wiec pacjent kieruje sie do kolejki"<<endl;
+                if(doc==1)
+                    qued.push(patvec[number]);
+                else if(doc==2)
+                    queo.push(patvec[number]);
+                else
+                    quep.push(patvec[number]);
+            }
+
+            break;
+
+        case 2:
+            cout<<"Pacjent nr "<<number<<" aktualizuje swoje dane"<<endl;
+            write<<"Pacjent nr "<<number<<" aktualizuje swoje dane"<<endl;
+            patvec[number].dataact("Kazimierz Kowalski");
+            break;
+
+        case 3:
+            cout<<"Pacjent nr "<<number<<" zamawia kopie swojej karty"<<endl;
+            write<<"Pacjent nr "<<number<<" zamawia kopie swojej karty"<<endl;
+            patvec[number].datacopy();
+            break;
+
+        case 4:
+            cout<<"Pacjent nr "<<number<<" nic nie robi"<<endl;
+            write<<"Pacjent nr "<<number<<" nic nie robi"<<endl;
+            break;
         }
-
-        cout<<"Dentysta "<<den1.is_ava()<<endl;
-        cout<<"Freetime "<<den1.freetime<<endl;
-        cout<<"examcon "<<den1.examcon<<endl;
-        cout<<"examt "<<den1.examt<<endl;
-
-        cout<<"Okulista "<<ocu1.is_ava()<<endl;
-        cout<<"Freetime "<<ocu1.freetime<<endl;
-        cout<<"examcon "<<ocu1.examcon<<endl;
-        cout<<"examt "<<ocu1.examt<<endl;
-
 
 
         den1.iter();
         ocu1.iter();
+        ped1.iter();
     }
-    */
 
 
     read.close();

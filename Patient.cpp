@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Patient.h"
 #include "Dentist.h"
 #include "Oculist.h"
@@ -13,7 +14,7 @@ Patient::Patient(int i)
     busy=false;
 }
 
-Patient::visitdoc(Doctor *wsk)
+void Patient::visitdoc(Doctor *wsk)
 {
 
     wsk->patcame();
@@ -21,12 +22,24 @@ Patient::visitdoc(Doctor *wsk)
 
 }
 
-Patient::notbusy()
+void Patient::notbusy()
 {
     busy=false;
 }
 
-Patient::ifbusy()
+bool Patient::ifbusy()
 {
     return busy;
+}
+
+void Patient::dataact(string newname)
+{
+    name=newname;
+}
+
+void Patient::datacopy()
+{
+    ofstream write("Results.txt");
+    write<<"Patient's data: "<<endl;
+    write<<name<<endl;
 }

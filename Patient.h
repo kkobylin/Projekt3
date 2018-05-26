@@ -17,12 +17,12 @@ class Patient
     public:
     Patient(int i); //konstruktor klasy
     ~Patient(){}; //destruktor klasy
-    visitdoc(Doctor *wsk); //wizyta lekarza
-    changedoc(); //zmiana lekarza
-    dataact(); //aktualizacja swoich danych
-    datacopy(); //kopia karty
-    notbusy(); //zmiana stanu pacjenta
-    ifbusy(); //czy pacjent zajety
+    void visitdoc(Doctor *wsk); //wizyta lekarza
+    //void changedoc(); //zmiana lekarza
+    void dataact(string newname); //aktualizacja swoich danych
+    void datacopy(); //kopia karty
+    void notbusy(); //zmiana stanu pacjenta
+    bool ifbusy(); //czy pacjent zajety
 
 };
 
