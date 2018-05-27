@@ -18,7 +18,7 @@ void Simulation(string file_name)
 {
     ofstream write;
     write.open("results.txt", ios::app);
-    ofstream oczyscplik("results.txt", ios::trunc);
+    ofstream cleanthefile("results.txt", ios::trunc);
     ifstream read(file_name);
 
     int loops,patients; //liczba iteracji oraz liczba pacjentow
