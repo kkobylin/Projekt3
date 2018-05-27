@@ -8,6 +8,8 @@
 #include "Patient.h"
 #include "Simulation.h"
 #include <queue>
+#include <ctime>
+#include <windows.h>
 using namespace std;
 
 
@@ -15,7 +17,8 @@ using namespace std;
 void Simulation(string file_name)
 {
     ofstream write;
-    write.open("results.txt");
+    write.open("results.txt", ios::app);
+    ofstream oczyscplik("results.txt", ios::trunc);
     ifstream read(file_name);
 
     int loops,patients; //liczba iteracji oraz liczba pacjentow
@@ -39,24 +42,31 @@ void Simulation(string file_name)
     Dentist den1;
     Oculist ocu1;
     Pedia ped1;
-    queue <Patient> qued; //kolejka oczekujacych pacjentow do dentysty
-    queue <Patient> queo; //kolejka oczekujacych pacjentow do okulisty
-    queue <Patient> quep; //kolejka oczekujacych pacjentow do pediatry
     Doctor *wsk;
 
     int choice,number;
+
 
     for(int i=0;i<loops;i++)
     {
 
         cout<<"Iteracja: "<<i<<endl;
+        write<<"Iteracja: "<<i<<endl;
 
         //akcja 1
-        do
+
+        number=random(0,patients-1);
+
+        if(patvec[number].ifbusy())
         {
-            number=random(0,patients-1);
-        }while(patvec[number].ifbusy());
-        choice=random(1,4);
+            cout<<"Pacjent numer "<<number<<" aktualnie zajety"<<endl;
+            write<<"Pacjent numer "<<number<<" aktualnie zajety"<<endl;
+        }
+        else
+        {
+            choice=random(1,4);
+            //choice=1;
+
         switch(choice)
         {
         case 1:
@@ -81,20 +91,15 @@ void Simulation(string file_name)
                 write<<"Pacjent nr "<<number<<" kieruje sie do pediatry"<<endl;
                 break;
             }
-            try
+            if(patvec[number].visitdoc(wsk))
             {
-                patvec[number].visitdoc(wsk);
+                cout<<"Pacjent zostal przyjety"<<endl;
+                write<<"Pacjent zostal przyjety"<<endl;
             }
-            catch(int)
+            else
             {
-                cout<<"Specjalista aktualnie zajety wiec pacjent kieruje sie do kolejki"<<endl;
-                write<<"Specjalista aktualnie zajety wiec pacjent kieruje sie do kolejki"<<endl;
-                if(doc==1)
-                    qued.push(patvec[number]);
-                else if(doc==2)
-                    queo.push(patvec[number]);
-                else
-                    quep.push(patvec[number]);
+                cout<<"Lekarz zajety. Pacjent zostal skierowany do kolejki."<<endl;
+                write<<"Lekarz zajety. Pacjent zostal skierowany do kolejki."<<endl;
             }
 
             break;
@@ -116,8 +121,11 @@ void Simulation(string file_name)
             write<<"Pacjent nr "<<number<<" nic nie robi"<<endl;
             break;
         }
+        Sleep(1000);
+        }
 
-
+        cout<<endl;
+        write<<endl;
         den1.iter();
         ocu1.iter();
         ped1.iter();
@@ -128,11 +136,15 @@ void Simulation(string file_name)
     write.close();
 }
 
-int random(int a, int b)
+random_device rd;
+mt19937 gen(time(0));
+
+inline int random(int a, int b)
 {
-    random_device rd;
-    mt19937 gen(rd());
+
     uniform_int_distribution<> dist(a,b);
     int number =  dist( gen );
+    for(int i=0;i<a*b;i++)
+    number =  dist( gen );
     return number;
 }

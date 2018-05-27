@@ -2,12 +2,15 @@
 #define Pedia_definition
 
 #include <iostream>
+#include <queue>
 #include "Doctor.h"
+#include "Patient.h"
 using namespace std;
 
 
 class Pedia : public Doctor
 {
+    queue <Patient> que; //kolejka oczekujacych na doktora
     const int examt=2; //czas pojedynczych badan
     const int breakt=4; //co ile lekarz jest dostepny
     const int avat=4; //czas na jaki lekarz jest dostepny
@@ -18,7 +21,7 @@ class Pedia : public Doctor
     public:
     bool is_ava(); //Czy lekarz dostepny
     void iter(); //funkcja wykonujaca sie po kazdej iteracji
-    void patcame(); //funkcja wykonujaca sie gdy przyjdzie pacjent
+    bool patcame(Patient p); //funkcja wykonujaca sie gdy przyjdzie pacjent
     Pedia(); //konstruktor klasy
     ~Pedia(){}; //destruktor klasy
 

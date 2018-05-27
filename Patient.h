@@ -17,7 +17,7 @@ class Patient
     public:
     Patient(int i); //konstruktor klasy
     ~Patient(){}; //destruktor klasy
-    void visitdoc(Doctor *wsk); //wizyta lekarza
+    bool visitdoc(Doctor *wsk); //wizyta lekarza
     //void changedoc(); //zmiana lekarza
     void dataact(string newname); //aktualizacja swoich danych
     void datacopy(); //kopia karty

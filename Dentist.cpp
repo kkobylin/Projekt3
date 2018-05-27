@@ -5,8 +5,7 @@ using namespace std;
 
 bool Dentist::is_ava()
 {
-    if(is_available) return true;
-    else return false;
+    return is_available;
 }
 
 
@@ -17,19 +16,21 @@ Dentist::Dentist()
     examcon=0;
 }
 
-void Dentist::patcame()
+bool Dentist::patcame(Patient p)
 {
-    if(freetime>=examt && is_available==true)
+    //Funkcja zwraca falsz jesli lekarz byl zajety i pacjent zostal ustawiony do kolejki
+    if(freetime>=examt && is_available==true && que.empty())
     {
     is_available=false;
     examcon=examt;
-//    pat=patient;
+    que.push(p);
+    return true;
     }
-    //Jesli lekarz nie moze przyjac rzuca wyjatek
+    //Jesli lekarz nie moze przyjac
     else
     {
-        int dentistbusy=2;
-        throw(dentistbusy);
+        que.push(p);
+        return false;
     }
 }
 
@@ -40,7 +41,8 @@ void Dentist::iter()
     {
         examcon=0;
         is_available=true;
-        pat->notbusy();
+        que.front().notbusy();
+        que.pop();
     }
 
     if(examcon>1)
@@ -61,6 +63,15 @@ void Dentist::iter()
         {
             is_available=true;
             freetime=avat;
+        }
+    }
+
+    if(!que.empty())
+    {
+        if(freetime>=examt && is_available==true)
+        {
+            is_available=false;
+            examcon=examt;
         }
     }
 }

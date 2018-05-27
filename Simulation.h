@@ -2,10 +2,10 @@
 #define Simulation_definition
 
 #include <iostream>
-using namespace std;
+//using namespace std;
 
 
-void Simulation(string);    //funkcja symulacji
+void Simulation(std::string);    //funkcja symulacji
 int random(int a, int b); //losowanie liczby calkowitej z zakresu <a,b>
 
 
