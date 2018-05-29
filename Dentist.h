@@ -8,7 +8,6 @@ using namespace std;
 
 class Dentist : public Doctor
 {
-    public:
     queue <Patient*> que; //kolejka oczekujacych na doktora
     bool is_available; //czy dostepny
     int freetime; //zmienna deklarujaca ile jeszcze jednostek czasu lekarz bedzie zajety lub wolny
@@ -17,7 +16,7 @@ class Dentist : public Doctor
     //protected:
     //enum class doctype{den,ocu,ped};
     //doctype dt=den;
-
+    public:
     Dentist();
     ~Dentist(){};
 
