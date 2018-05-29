@@ -2,19 +2,33 @@
 #define Doctor_definition
 
 #include <iostream>
-//#include "Patient.h"
-class Patient;
+#include "IDoctor.h"
+#include "Patient.h"
+#include <queue>
+//class Patient;
 using namespace std;
 
 
-class Doctor
+class Doctor : public IDoctor
 {
 
+    queue <Patient*> que; //kolejka oczekujacych na doktora
+    bool is_available; //czy dostepny
+    int freetime; //zmienna deklarujaca ile jeszcze jednostek czasu lekarz bedzie zajety lub wolny
+    int examcon; //zmienna deklarujaca ile jeszcze czasu beda wykonywane badania
+
+    protected:
+    enum class doctype{den,ocu,ped};
+    doctype dt;
+
     public:
-    virtual bool is_ava()=0; //Czy lekarz dostepny
-    virtual void iter()=0; //funkcja wykonujaca sie po kazdej iteracji
-    virtual bool patcame(Patient p)=0; //funkcja wykonujaca sie gdy przyjdzie pacjent
-    virtual ~Doctor(){}; //destruktor wirtualny
+    bool is_ava(); //Czy lekarz dostepny
+    void iter(); //funkcja wykonujaca sie po kazdej iteracji
+    bool patcame(Patient *p); //funkcja wykonujaca sie gdy przyjdzie pacjent
+    int examt(); //czas pojedynczych badan
+    int breakt(); //co ile lekarz jest dostepny
+    int avat(); //czas na jaki lekarz jest dostepny
+    virtual ~Doctor(){};
 
 };
 
