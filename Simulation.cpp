@@ -214,7 +214,7 @@ void Simulation(string file_name)
         cout<<endl;
         write<<endl;
         }
-
+        /*
         cout<<"Czy lekarze dostepni"<<endl;
         cout<<denvec[0].is_available<<endl;
         cout<<ocuvec[0].is_ava()<<endl;
@@ -235,7 +235,7 @@ void Simulation(string file_name)
         cout<<"Czy pacjenci zajeci"<<endl;
         cout<<patvec[0].ifbusy()<<endl;
         cout<<patvec[1].ifbusy()<<endl;
-
+        */
         for(int i=0;i<dentn;i++)
             denvec[i].iter();
 
