@@ -32,6 +32,11 @@ void Simulation(string file_name)
             readfail a;
             throw a;
         }
+        if(loops<0 || patients<=0 || dentn<0 || ocun<0 || pedn<0)
+        {
+            int a;
+            throw a;
+        }
     }
     catch(...)
     {
@@ -77,14 +82,15 @@ void Simulation(string file_name)
     int choice,number,docnumber,doc;
 
     bool docfree;
+    struct thereisnodoc{};
     for(int i=0;i<loops;i++)
     {
 
         cout<<"Iteracja: "<<i<<endl;
         write<<"Iteracja: "<<i<<endl;
 
-      //  for(int akcja=1;akcja<=3;akcja++)
-      //  {
+        for(int akcja=1;akcja<=3;akcja++)
+        {
         //Pojedyncza akcja
 
         number=random(0,patients-1);
@@ -97,29 +103,69 @@ void Simulation(string file_name)
         else
         {
             choice=random(1,5);
-           // choice=1;
+            //choice=1;
 
         switch(choice)
         {
         case 1:
             //Pacjent idzie do specjalisty
             doc=random(1,3);
+            //doc=1;
             switch(doc)
             {
             case 1:
-                docnumber=random(0,dentn-1);
+                try
+                {
+                    if(dentn==0)
+                    {
+                         thereisnodoc a;
+                        throw a;
+                    }
+                    docnumber=random(0,dentn-1);
+                }
+                catch(thereisnodoc)
+                {
+                   cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
+                    continue;
+                }
                 wsk=&denvec[docnumber];
                 cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty numer "<<docnumber<<endl;
                 write<<"Pacjent nr "<<number<<" kieruje sie do dentysty numer "<<docnumber<<endl;
                 break;
             case 2:
-                docnumber=random(0,ocun-1);
+                try
+                {
+                    if(ocun==0)
+                    {
+                         thereisnodoc a;
+                        throw a;
+                    }
+                    docnumber=random(0,ocun-1);
+                }
+                catch(thereisnodoc)
+                {
+                   cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
+                    continue;
+                }
                 wsk=&ocuvec[docnumber];
                 cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty numer "<<docnumber<<endl;
                 write<<"Pacjent nr "<<number<<" kieruje sie do okulisty numer "<<docnumber<<endl;
                 break;
             case 3:
-                docnumber=random(0,pedn-1);
+                try
+                {
+                    if(pedn==0)
+                    {
+                         thereisnodoc a;
+                        throw a;
+                    }
+                    docnumber=random(0,pedn-1);
+                }
+                catch(thereisnodoc)
+                {
+                   cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
+                    continue;
+                }
                  wsk=&pedvec[docnumber];
                 cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry numer "<<docnumber<<endl;
                 write<<"Pacjent nr "<<number<<" kieruje sie do pediatry numer "<<docnumber<<endl;
@@ -166,23 +212,63 @@ void Simulation(string file_name)
         case 5:
             //Pacjent idzie do specjalisty
             doc=random(1,3);
+            doc=1;
             switch(doc)
             {
             case 1:
-                docnumber=random(0,dentn-1);
+                try
+                {
+                    if(dentn==0)
+                    {
+                         thereisnodoc a;
+                        throw a;
+                    }
+                    docnumber=random(0,dentn-1);
+                }
+                catch(thereisnodoc)
+                {
+                   cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
+                    continue;
+                }
                 wsk=&denvec[docnumber];
                 cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty numer "<<docnumber<<endl;
                 write<<"Pacjent nr "<<number<<" kieruje sie do dentysty numer "<<docnumber<<endl;
                 break;
             case 2:
-                docnumber=random(0,ocun-1);
+                try
+                {
+                    if(ocun==0)
+                    {
+                         thereisnodoc a;
+                        throw a;
+                    }
+                    docnumber=random(0,ocun-1);
+                }
+                catch(thereisnodoc)
+                {
+                   cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
+                    continue;
+                }
                 wsk=&ocuvec[docnumber];
                 cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty numer "<<docnumber<<endl;
                 write<<"Pacjent nr "<<number<<" kieruje sie do okulisty numer "<<docnumber<<endl;
                 break;
             case 3:
-                docnumber=random(0,pedn-1);
-                wsk=&pedvec[docnumber];
+                try
+                {
+                    if(dentn==0)
+                    {
+                         thereisnodoc a;
+                        throw a;
+                    }
+                    docnumber=random(0,pedn-1);
+                }
+                catch(thereisnodoc)
+                {
+                   cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
+                    continue;
+                }
+                 wsk=&pedvec[docnumber];
                 cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry numer "<<docnumber<<endl;
                 write<<"Pacjent nr "<<number<<" kieruje sie do pediatry numer "<<docnumber<<endl;
                 break;
@@ -209,7 +295,7 @@ void Simulation(string file_name)
             break;
         }
         //Sleep(1000);
-      //  }
+        }
 
         cout<<endl;
         write<<endl;
