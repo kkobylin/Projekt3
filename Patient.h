@@ -10,12 +10,12 @@ using namespace std;
 
 class Patient : public IPatient
 {
-    public:
+    
     string name; //Imie i nazwisko
     int id; //Identyfikator pacjenta
     bool busy; //czy pacjent w trakcie badania lub w kolejce
 
-
+    public:
     Patient(int i); //konstruktor klasy
     ~Patient(){}; //destruktor klasy
     bool visitdoc(Doctor *wsk); //wizyta lekarza
