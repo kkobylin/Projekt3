@@ -7,6 +7,8 @@
 
 class Patient : public IPatient
 {
+    friend class Doctor;
+
     std::string name; //Imie i nazwisko
     int id; //Identyfikator pacjenta
     bool busy; //czy pacjent w trakcie badania lub w kolejce
@@ -15,9 +17,10 @@ class Patient : public IPatient
     Patient(int i);
     ~Patient(){};
     bool visitdoc(Doctor *wsk); //wizyta lekarza
+    bool docapp(Doctor *wsk); //zapis do lekarza
     void dataact(std::string newname); //aktualizacja swoich danych
     void datacopy(); //kopia karty
-    void notbusy(); //zmiana stanu pacjenta
+  //  void notbusy(); //zmiana stanu pacjenta
     bool ifbusy(); //czy pacjent zajety
 
 };

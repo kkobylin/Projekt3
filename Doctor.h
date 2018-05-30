@@ -24,6 +24,7 @@ class Doctor : public IDoctor
     bool is_ava(); //Czy lekarz dostepny
     void iter(); //funkcja wykonujaca sie po kazdej iteracji
     bool patcame(Patient *p); //funkcja wykonujaca sie gdy przyjdzie pacjent
+    void toque(Patient *p); //pacjent zapisuje sie do lekarza
     virtual ~Doctor(){};
 
 };

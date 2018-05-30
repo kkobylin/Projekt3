@@ -34,7 +34,7 @@ void Doctor::iter()
     {
         examcon=0;
         is_available=true;
-        que.front()->notbusy();
+        que.front()->busy=false;
         que.pop();
     }
 
@@ -69,6 +69,11 @@ void Doctor::iter()
             examcon=examt();
         }
     }
+}
+
+void Doctor::toque(Patient *p)
+{
+    que.push(p);
 }
 
 int Doctor::examt()

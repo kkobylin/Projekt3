@@ -193,7 +193,7 @@ void Simulation(string file_name)
             break;
 
         case 5:
-            //Pacjent idzie do specjalisty
+            //Pacjent zapisuje sie do specjalisty na pierwszy wolny termin poczawszy od jutra
             doc=random(1,3);
             switch(doc)
             {
@@ -209,12 +209,12 @@ void Simulation(string file_name)
                 }
                 catch(thereisnodoc)
                 {
-                   cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
+                   cout<<"Pacjent nr "<<number<<" che zapisac sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                 wsk=&denvec[docnumber];
-                cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty numer "<<docnumber<<endl;
-                write<<"Pacjent nr "<<number<<" kieruje sie do dentysty numer "<<docnumber<<endl;
+                cout<<"Pacjent nr "<<number<<" zapisuje sie do dentysty numer "<<docnumber<<endl;
+                write<<"Pacjent nr "<<number<<" zapisuje sie do dentysty numer "<<docnumber<<endl;
                 break;
             case 2:
                 try
@@ -228,12 +228,12 @@ void Simulation(string file_name)
                 }
                 catch(thereisnodoc)
                 {
-                   cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
+                   cout<<"Pacjent nr "<<number<<" chce zapisac sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                 wsk=&ocuvec[docnumber];
-                cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty numer "<<docnumber<<endl;
-                write<<"Pacjent nr "<<number<<" kieruje sie do okulisty numer "<<docnumber<<endl;
+                cout<<"Pacjent nr "<<number<<" zapisuje sie do okulisty numer "<<docnumber<<endl;
+                write<<"Pacjent nr "<<number<<" zapisuje sie do okulisty numer "<<docnumber<<endl;
                 break;
             case 3:
                 try
@@ -247,31 +247,21 @@ void Simulation(string file_name)
                 }
                 catch(thereisnodoc)
                 {
-                   cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
+                   cout<<"Pacjent nr "<<number<<" chce zapisac sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                  wsk=&pedvec[docnumber];
-                cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry numer "<<docnumber<<endl;
-                write<<"Pacjent nr "<<number<<" kieruje sie do pediatry numer "<<docnumber<<endl;
+                cout<<"Pacjent nr "<<number<<" zapisuje sie do pediatry numer "<<docnumber<<endl;
+                write<<"Pacjent nr "<<number<<" zapisuje sie do pediatry numer "<<docnumber<<endl;
                 break;
             }
             try
             {
-                docfree=patvec[number].visitdoc(wsk);
+                patvec[number].docapp(wsk);
             }
             catch(int)
             {
                 cout<<"Wskaznik nie ustawiony na zadnego specjaliste"<<endl;exit(0);
-            }
-            if(docfree)
-            {
-                cout<<"Pacjent zostal przyjety"<<endl;
-                write<<"Pacjent zostal przyjety"<<endl;
-            }
-            else
-            {
-                cout<<"Lekarz zajety. Pacjent zostal skierowany do kolejki."<<endl;
-                write<<"Lekarz zajety. Pacjent zostal skierowany do kolejki."<<endl;
             }
 
             break;

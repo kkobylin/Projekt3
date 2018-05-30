@@ -12,7 +12,8 @@ class IDoctor
     public:
     virtual bool is_ava()=0; //Czy lekarz dostepny
     virtual void iter()=0; //funkcja wykonujaca sie po kazdej iteracji
-    virtual bool patcame(Patient *p)=0; //funkcja wykonujaca sie gdy przyjdzie pacjent
+    virtual bool patcame(Patient *p)=0; //funkcja wykonujaca sie gdy przyjdzie
+    virtual void toque(Patient *p)=0;
 
     virtual int examt()=0; //czas pojedynczych badan
     virtual int breakt()=0; //co ile lekarz jest dostepny

@@ -27,11 +27,26 @@ bool Patient::visitdoc(Doctor *wsk)
 
 }
 
+bool Patient::docapp(Doctor *wsk)
+{
+    busy=true;
+    if(!wsk)
+    {
+        int a;
+        throw a;
+    }
+    else
+    {
+    wsk->toque(this);
+    }
+
+}
+/*
 void Patient::notbusy()
 {
     busy=false;
 }
-
+*/
 bool Patient::ifbusy()
 {
     return busy;
