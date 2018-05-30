@@ -2,7 +2,6 @@
 #define Simulation_definition
 
 #include <iostream>
-//using namespace std;
 
 
 void Simulation(std::string);    //funkcja symulacji
