@@ -14,13 +14,11 @@ class Doctor : public IDoctor
     bool is_available; //czy dostepny
     int freetime; //zmienna deklarujaca ile jeszcze jednostek czasu lekarz bedzie zajety lub wolny
     int examcon; //zmienna deklarujaca ile jeszcze czasu beda wykonywane badania
-    enum class doctype{den,ocu,ped};
-    doctype dt; //zmienna deklarujaca ktore specyficzne wartosci ma zwracac funkcja
 
     public:
-    int examt(); //czas pojedynczych badan
-    int breakt(); //co ile lekarz jest dostepny
-    int avat(); //czas na jaki lekarz jest dostepny
+    virtual int examt()=0; //czas pojedynczych badan
+    virtual int breakt()=0; //co ile lekarz jest dostepny
+    virtual int avat()=0; //czas na jaki lekarz jest dostepny
     bool is_ava(); //Czy lekarz dostepny
     void iter(); //funkcja wykonujaca sie po kazdej iteracji
     bool patcame(Patient *p); //funkcja wykonujaca sie gdy przyjdzie pacjent

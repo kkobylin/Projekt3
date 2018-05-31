@@ -9,6 +9,9 @@ class Pedia : public Doctor
     public:
     Pedia();
     ~Pedia(){};
+    int examt(); //czas pojedynczych badan
+    int breakt(); //co ile lekarz jest dostepny
+    int avat(); //czas na jaki lekarz jest dostepny
 };
 
 

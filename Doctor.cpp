@@ -75,35 +75,3 @@ void Doctor::toque(Patient *p)
 {
     que.push(p);
 }
-
-int Doctor::examt()
-{
-    if(dt==doctype::den)
-        return 2;
-    else if(dt==doctype::ocu)
-        return 1;
-    else if(dt==doctype::ped)
-        return 2;
-
-}
-
-int Doctor::breakt()
-{
-
-    if(dt==doctype::den)
-        return 3;
-    else if(dt==doctype::ocu)
-        return 2;
-    else if(dt==doctype::ped)
-        return 4;
-}
-
-int Doctor::avat()
-{
-    if(dt==doctype::den)
-        return 5;
-    else if(dt==doctype::ocu)
-        return 7;
-    else if(dt==doctype::ped)
-        return 4;
-}

@@ -93,7 +93,6 @@ void Simulation(string file_name)
         case 1:
             //Pacjent idzie do specjalisty
             doc=random(1,3);
-            doc=1;
             switch(doc)
             {
             case 1:
@@ -109,6 +108,7 @@ void Simulation(string file_name)
                 catch(thereisnodoc)
                 {
                    cout<<"Pacjent nr "<<number<<" kieruje sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
+                   write<<"Pacjent nr "<<number<<" kieruje sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                 wsk=&denvec[docnumber];
@@ -128,6 +128,7 @@ void Simulation(string file_name)
                 catch(thereisnodoc)
                 {
                    cout<<"Pacjent nr "<<number<<" kieruje sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
+                   write<<"Pacjent nr "<<number<<" kieruje sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                 wsk=&ocuvec[docnumber];
@@ -147,6 +148,7 @@ void Simulation(string file_name)
                 catch(thereisnodoc)
                 {
                    cout<<"Pacjent nr "<<number<<" kieruje sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
+                   write<<"Pacjent nr "<<number<<" kieruje sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                  wsk=&pedvec[docnumber];
@@ -160,7 +162,9 @@ void Simulation(string file_name)
             }
             catch(int)
             {
-                cout<<"Wskaznik nie ustawiony na zadnego specjaliste"<<endl;exit(0);
+                cout<<"Wskaznik nie ustawiony na zadnego specjaliste"<<endl;
+                write<<"Wskaznik nie ustawiony na zadnego specjaliste"<<endl;
+                exit(0);
             }
             if(docfree)
             {
@@ -210,6 +214,7 @@ void Simulation(string file_name)
                 catch(thereisnodoc)
                 {
                    cout<<"Pacjent nr "<<number<<" che zapisac sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
+                   write<<"Pacjent nr "<<number<<" che zapisac sie do dentysty ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                 wsk=&denvec[docnumber];
@@ -229,6 +234,7 @@ void Simulation(string file_name)
                 catch(thereisnodoc)
                 {
                    cout<<"Pacjent nr "<<number<<" chce zapisac sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
+                   write<<"Pacjent nr "<<number<<" chce zapisac sie do okulisty ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                 wsk=&ocuvec[docnumber];
@@ -248,6 +254,7 @@ void Simulation(string file_name)
                 catch(thereisnodoc)
                 {
                    cout<<"Pacjent nr "<<number<<" chce zapisac sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
+                   write<<"Pacjent nr "<<number<<" chce zapisac sie do pediatry ale nie ma zadnego w tej przychodni"<<endl;
                     continue;
                 }
                  wsk=&pedvec[docnumber];
@@ -261,7 +268,9 @@ void Simulation(string file_name)
             }
             catch(int)
             {
-                cout<<"Wskaznik nie ustawiony na zadnego specjaliste"<<endl;exit(0);
+                cout<<"Wskaznik nie ustawiony na zadnego specjaliste"<<endl;
+                write<<"Wskaznik nie ustawiony na zadnego specjaliste"<<endl;
+                exit(0);
             }
 
             break;

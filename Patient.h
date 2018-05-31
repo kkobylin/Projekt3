@@ -20,7 +20,6 @@ class Patient : public IPatient
     bool docapp(Doctor *wsk); //zapis do lekarza
     void dataact(std::string newname); //aktualizacja swoich danych
     void datacopy(); //kopia karty
-  //  void notbusy(); //zmiana stanu pacjenta
     bool ifbusy(); //czy pacjent zajety
 
 };

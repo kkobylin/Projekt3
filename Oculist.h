@@ -9,6 +9,9 @@ class Oculist : public Doctor
     public:
     Oculist();
     ~Oculist(){};
+    int examt(); //czas pojedynczych badan
+    int breakt(); //co ile lekarz jest dostepny
+    int avat(); //czas na jaki lekarz jest dostepny
 };
 
 

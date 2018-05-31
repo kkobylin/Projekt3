@@ -41,12 +41,7 @@ bool Patient::docapp(Doctor *wsk)
     }
 
 }
-/*
-void Patient::notbusy()
-{
-    busy=false;
-}
-*/
+
 bool Patient::ifbusy()
 {
     return busy;

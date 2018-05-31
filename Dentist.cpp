@@ -3,8 +3,23 @@
 
 Dentist::Dentist()
 {
-    Doctor::dt=doctype::den;
     is_available=true;
     freetime=static_cast<int>(avat());
     examcon=0;
+}
+
+int Dentist::examt()
+{
+    return 2;
+
+}
+
+int Dentist::breakt()
+{
+    return 3;
+}
+
+int Dentist::avat()
+{
+    return 5;
 }
