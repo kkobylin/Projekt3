@@ -1,0 +1,32 @@
+CC=g++
+CFLAGS=-Wall
+
+sources= main.cpp Dentist.cpp Doctor.cpp Oculist.cpp Patient.cpp Pedia.cpp Simulation.cpp
+objects=$(patsubst %.cpp,%.o,$(sources))
+
+LIST.out: $(objects)
+	g++ -Wall $^ -o $@
+
+main.o: main.cpp Simulation.h
+
+Simulation.o: Simulation.cpp Simulation.h
+
+Dentist.o: Dentist.cpp Dentist.h
+
+Doctor.o: Doctor.cpp IDoctor.h Doctor.h
+
+Patient.o: Patient.cpp IPatient.h Patient.h
+
+Oculist.o: Oculist.cpp Oculist.h
+
+Pedia.o: Pedia.cpp Pedia.h
+
+.PHONY: run
+
+run:
+	./LIST.out
+
+.PHONY: clean
+
+clean:
+	rm -f LIST.out $(objects)
